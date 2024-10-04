@@ -30,4 +30,11 @@ public class ProductService {
     productRepository.delete(productModel);
     return true;
   }
+
+  public boolean updateOne(ProductModel product){
+    if(!productRepository.existsById(String.valueOf(product.getId()))) return false;
+    productRepository.save(product);
+    return true;
+  }
+
 }
