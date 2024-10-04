@@ -37,4 +37,7 @@ public class ProductService {
     return true;
   }
 
+  public ProductModel getOne(int id_product) {
+    return productRepository.findById(String.valueOf(id_product)).orElse(null);
+  }
 }

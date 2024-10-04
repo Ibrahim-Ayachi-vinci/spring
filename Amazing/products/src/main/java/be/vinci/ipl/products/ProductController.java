@@ -24,6 +24,11 @@ public class ProductController {
     return productService.getAll();
   }
 
+  @GetMapping("/products/{id}")
+  public ProductModel readOne(@PathVariable int id){
+    return productService.getOne(id);
+  }
+
   @PostMapping("/products")
   public ResponseEntity<Void> createOne(@RequestBody ProductModel product) {
     if (product.invalid()) {

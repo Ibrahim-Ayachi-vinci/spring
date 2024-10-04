@@ -1,4 +1,4 @@
-package be.vinci.ipl.carts;
+package be.vinci.ipl.carts.models;
 
 
 import jakarta.persistence.Column;
