@@ -1,8 +1,11 @@
 package be.vinci.ipl.carts;
 
 import be.vinci.ipl.carts.models.CartModel;
+import be.vinci.ipl.carts.models.Product;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,6 +36,19 @@ public class CartController {
       }else {
         return new ResponseEntity<>(HttpStatus.CREATED);
       }
+    }
+
+    @DeleteMapping("carts/users/{pseudo}/products/{productId}")
+  public void deleteOneProduct(@PathVariable String pseudo, @PathVariable int productId){
+      boolean found = service.deleteOneProduct(pseudo , productId);
+      if (!found) {
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+      }
+    }
+
+    @GetMapping("/carts/users/{pseudo}")
+  public Iterable<Product> readAllFromUser(@PathVariable String pseudo){
+      return service.readAllFromuser(pseudo);
     }
 
 }

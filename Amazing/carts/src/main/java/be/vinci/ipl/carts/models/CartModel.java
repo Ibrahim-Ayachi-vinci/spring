@@ -19,10 +19,10 @@ public class CartModel {
   private int id;
 
   @Column(nullable = false)
-  private int product_id;
+  private int productId;
 
   @Column(nullable = false)
-  private String pseudo_user;
+  private String pseudoUser;
 
   public CartModel (){
 
