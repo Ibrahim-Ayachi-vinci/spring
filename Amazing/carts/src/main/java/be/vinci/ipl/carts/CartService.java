@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class CartService {
@@ -87,4 +89,30 @@ public class CartService {
   }
 
 
+  public boolean deleteCartUser(String pseudo) {
+
+    if (!cartRepository.existsByPseudoUser(pseudo)){
+      return false;
+    }
+
+    CartModel cartModel = cartRepository.getByPseudoUser(pseudo);
+
+    cartRepository.delete(cartModel);
+    return true;
+  }
+
+  public boolean deleteProductsOfAll(int productId) {
+
+    if (productsProxy.readOne(productId) == null){
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }
+
+    List<CartModel> cartModelList = cartRepository.findCartModelsByProductId(productId);
+
+    cartRepository.deleteAll(cartModelList);
+
+    return true;
+
+  }
 }
+

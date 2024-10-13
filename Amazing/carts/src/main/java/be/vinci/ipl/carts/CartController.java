@@ -51,4 +51,25 @@ public class CartController {
       return service.readAllFromuser(pseudo);
     }
 
+    @DeleteMapping("carts/users/{pseudo}")
+  public void deleteCartUser(@PathVariable String pseudo){
+      boolean found = service.deleteCartUser(pseudo);
+
+      if (!found){
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+      }
+    }
+
+    @DeleteMapping("carts/products/{productId}")
+  public void deleteProductsOfAll(@PathVariable int productId){
+      boolean found = service.deleteProductsOfAll(productId);
+
+      if (!found){
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+      }
+
+    }
+
+
+
 }

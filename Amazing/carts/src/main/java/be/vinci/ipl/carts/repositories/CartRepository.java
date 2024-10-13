@@ -18,5 +18,11 @@ public interface CartRepository extends CrudRepository<CartModel, Integer> {
 
   List<CartModel> findCartModelsByPseudoUser(String pseudo);
 
+  CartModel getByPseudoUser(String pseudoUser);
+
+  boolean existsByPseudoUser(String pseudoUser);
+
+  List<CartModel> findCartModelsByProductId(int productId);
+
 
 }
