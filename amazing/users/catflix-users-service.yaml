@@ -4,7 +4,7 @@ info:
   description: Microservice de gestion des utilisateurs pour un projet générique. Permet de créer, lire, modifier et supprimer des utilisateurs.
   version: 1.0.0
 servers:
-  - url: http://localhost:8080
+  - url: http://localhost:9003
     description: Development server
 paths:
 
